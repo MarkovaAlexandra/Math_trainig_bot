@@ -42,3 +42,8 @@ def refresh_user_answer(tg_id:int):
     sql = '''UPDATE user_result SET user_answer=0 WHERE user_id=?'''
     cursor.execute(sql, (tg_id,))
     connection.commit()
+
+def update_statistics(tg_id:int, column:str):
+    sql = f'''UPDATE user_result SET {column}={column} + 1 WHERE user_id=?'''
+    cursor.execute(sql, (tg_id,))
+    connection.commit()

@@ -43,8 +43,8 @@ def create_kb_mult(enter: int):
 
 def create_nex_plus_pos():
     keybord_a = InlineKeyboardMarkup()
-    btn_next_plus = InKB(text='дальше',callback_data=callback.new(menu='next',btn='next_plus'))
-    btn_smile = InKB(text='smile',callback_data=callback.new(menu='next',btn='smile'))
+    btn_next_plus = InKB(text='дальше',callback_data=callback.new(menu='',btn='next_plus'))
+    btn_smile = InKB(text='smile',callback_data=callback.new(menu='',btn='smile'))
     btn_back = InKB(text='назад',callback_data=callback.new(menu='',btn='main'))
     keybord_a.add(btn_smile,btn_next_plus,btn_back)
     return keybord_a
@@ -52,8 +52,8 @@ def create_nex_plus_pos():
 
 def create_nex_mult_pos():
     keybord_b = InlineKeyboardMarkup()
-    btn_next_mult = InKB(text='дальше',callback_data=callback.new(menu='next',btn='next_mult'))
-    btn_smile = InKB(text='smile',callback_data=callback.new(menu='next',btn='smile'))
+    btn_next_mult = InKB(text='дальше',callback_data=callback.new(menu='',btn='next_mult'))
+    btn_smile = InKB(text='smile',callback_data=callback.new(menu='',btn='smile'))
     btn_back = InKB(text='назад', callback_data=callback.new(menu='', btn='main'))
     keybord_b.add(btn_smile,btn_next_mult,btn_back)
     return keybord_b

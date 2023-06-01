@@ -35,32 +35,14 @@ async def enter(call: CallbackQuery):
     if num.isdigit():
         res += num                                                  # к текущему значению в бд конкатинировали num
     else:
-        res = res[:-1]                                              # от текущего значение отрезали последнюю цифру
+        if len(res) == 1:
+            res = 0
+        else:
+            res = res[:-1]                                          # от текущего значение отрезали последнюю цифру
     update_user_answer(int(res), user)                              # и обновили его в бд
     await bot.edit_message_text(chat_id=chat_id, message_id=message_id, text=f'твой ответ {int(res)}?',
                                         reply_markup=create_kb_plus(int(res)))
 
-
-
-
-
-
-
-
-@dp.callback_query_handler(callback.filter(menu='next_plus'))
-async def next_plus(call: CallbackQuery):
-    chat_id = call.message.chat.id
-    message_id = call.message.message_id
-    await plus(call.message)
-
-
-@dp.callback_query_handler(callback.filter(menu='next_mult'))
-async def next_mult(call: CallbackQuery):
-    print('я тут')
-    print(call)
-    chat_id = call.message.chat.id
-    message_id = call.message.message_id
-    await multipl(call.message)
 
 
 @dp.message_handler(filters.Text(equals='дурак', ignore_case=True))
