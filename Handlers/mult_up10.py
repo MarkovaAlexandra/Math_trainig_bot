@@ -4,7 +4,7 @@ from aiogram.dispatcher import filters
 import random
 import time
 from Keyboard import create_kb_mult, create_nex_mult_pos
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import Message, CallbackQuery, InputMediaPhoto
 import settings
 from Keyboard.callback import callback
 from DataBase import update_user_answer,update_bot_answer,check_user_answer
@@ -22,8 +22,11 @@ async def multipl(message: Message | CallbackQuery):
     result = a * b
     update_bot_answer(result,user)                           # кладем в бд верный ответ
 
-    await bot.edit_message_text(chat_id=chat_id, message_id=message_id,
-                                    text=f'{a} * {b} = ?', reply_markup=create_kb_mult(settings.ENTER))
+    # await bot.edit_message_text(chat_id=chat_id, message_id=message_id,
+    #                                 text=f'{a} * {b} = ?', reply_markup=create_kb_mult(settings.ENTER))
+    await bot.edit_message_media(media=InputMediaPhoto(media=settings.PICTURE, caption=f'{a} * {b} = ?'),
+                                 chat_id=chat_id,
+                                 message_id=message_id, reply_markup=create_kb_mult(settings.ENTER))
 
 @dp.callback_query_handler(callback.filter(menu='main_mult'))
 async def enter(call: CallbackQuery):
@@ -40,9 +43,11 @@ async def enter(call: CallbackQuery):
         else:
             res = res[:-1]
     update_user_answer(res,user)                             # сохраняем в бд
-    await bot.edit_message_text(chat_id=chat_id, message_id=message_id, text=f'твой ответ {int(res)} ?',
-                                        reply_markup=create_kb_mult(int(res)))
-
+    # await bot.edit_message_text(chat_id=chat_id, message_id=message_id, text=f'твой ответ {int(res)} ?',
+    #                                     reply_markup=create_kb_mult(int(res)))
+    await bot.edit_message_media(media=InputMediaPhoto(media=settings.PICTURE, caption=f'твой ответ {int(res)}?'),
+                                 chat_id=chat_id,
+                                 message_id=message_id, reply_markup=create_kb_mult(int(res)))
 
 
 

@@ -1,6 +1,6 @@
 from aiogram.utils import executor
 from Handlers import dp
-from DataBase import create_users_table
+
 
 async def on_start(_):
     print('Бот запущен')

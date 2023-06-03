@@ -4,7 +4,7 @@ from aiogram.dispatcher import filters
 import random
 import time
 from Keyboard import create_kb_plus, create_nex_plus_pos,create_nex_mult_pos
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import Message, CallbackQuery, InputMediaPhoto
 import settings
 from Keyboard.callback import callback
 from DataBase import update_bot_answer, update_user_answer,check_user_answer
@@ -21,9 +21,10 @@ async def plus(message: Message | CallbackQuery):
     b = random.randint(1, 6)
     result = a + b
     update_bot_answer(result, user)                                 # вношу в бд правильный ответ
-    await bot.edit_message_text(chat_id=chat_id, message_id=message_id,
-                                  text=f'{a} + {b} = ?',reply_markup=create_kb_plus(settings.ENTER))
-
+    # await bot.edit_message_text(chat_id=chat_id, message_id=message_id,
+    #                               text=f'{a} + {b} = ?',reply_markup=create_kb_plus(settings.ENTER))
+    await bot.edit_message_media(media=InputMediaPhoto(media=settings.PICTURE, caption=f'{a} + {b} = ?'), chat_id=chat_id,
+                                 message_id=message_id, reply_markup=create_kb_plus(settings.ENTER))
 
 @dp.callback_query_handler(callback.filter(menu='main_plus'))
 async def enter(call: CallbackQuery):
@@ -40,9 +41,11 @@ async def enter(call: CallbackQuery):
         else:
             res = res[:-1]                                          # от текущего значение отрезали последнюю цифру
     update_user_answer(int(res), user)                              # и обновили его в бд
-    await bot.edit_message_text(chat_id=chat_id, message_id=message_id, text=f'твой ответ {int(res)}?',
-                                        reply_markup=create_kb_plus(int(res)))
-
+    # await bot.edit_message_text(chat_id=chat_id, message_id=message_id, text=f'твой ответ {int(res)}?',
+    #                                     reply_markup=create_kb_plus(int(res)))
+    await bot.edit_message_media(media=InputMediaPhoto(media=settings.PICTURE, caption=f'твой ответ {int(res)}?'),
+                                 chat_id=chat_id,
+                                 message_id=message_id, reply_markup=create_kb_plus(int(res)))
 
 
 @dp.message_handler(filters.Text(equals='дурак', ignore_case=True))
