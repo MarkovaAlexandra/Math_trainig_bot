@@ -23,7 +23,7 @@ async def plus(message: Message | CallbackQuery):
     await bot.edit_message_media(media=InputMediaPhoto(media=settings.PICTURE, caption=f'{a} + {b} = ?'), chat_id=chat_id,
                                  message_id=message_id, reply_markup=create_kb_plus100(settings.ENTER))
 
-@dp.callback_query_handler(callback.filter(menu='main_plus100'))
+@dp.callback_query_handler(callback.filter(menu='main_plus_100'))
 async def enter(call: CallbackQuery):
     user = call.from_user.id
     chat_id = call.message.chat.id

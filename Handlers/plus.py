@@ -23,26 +23,26 @@ async def plus(message: Message | CallbackQuery):
     await bot.edit_message_media(media=InputMediaPhoto(media=settings.PICTURE, caption=f'{a} + {b} = ?'), chat_id=chat_id,
                                  message_id=message_id, reply_markup=(create_kb_plus(settings.ENTER)))
 
-# @dp.callback_query_handler(callback.filter(menu='main'))
-# async def enter(call: CallbackQuery):
-#     user = call.from_user.id
-#     chat_id = call.message.chat.id
-#     message_id = call.message.message_id
-#     res = str(check_user_answer(user)[0])                           # текущее значение из бд
-#     print(call.data)
-#     _, _, num = call.data.split(':')
-#     if num.isdigit():
-#         res += num                                                  # к текущему значению в бд конкатинировали num
-#     else:
-#         if len(res) == 1:
-#             res = 0
-#         else:
-#             res = res[:-1]                                          # от текущего значение отрезали последнюю цифру
-#     update_user_answer(int(res), user)                              # и обновили его в бд
-#     await bot.edit_message_media(media=InputMediaPhoto(media=settings.PICTURE, caption=f'твой ответ {int(res)}?'),
-#                                  chat_id=chat_id,
-#                                  message_id=message_id,
-#                                  reply_markup=create_kb_plus(int(res)))
+@dp.callback_query_handler(callback.filter(menu='main_plus_10'))
+async def enter(call: CallbackQuery):
+     user = call.from_user.id
+     chat_id = call.message.chat.id
+     message_id = call.message.message_id
+     res = str(check_user_answer(user)[0])                           # текущее значение из бд
+     print(call.data)
+     _, _, num = call.data.split(':')
+     if num.isdigit():
+         res += num                                                  # к текущему значению в бд конкатинировали num
+     else:
+         if len(res) == 1:
+             res = 0
+         else:
+             res = res[:-1]                                          # от текущего значение отрезали последнюю цифру
+     update_user_answer(int(res), user)                              # и обновили его в бд
+     await bot.edit_message_media(media=InputMediaPhoto(media=settings.PICTURE, caption=f'твой ответ {int(res)}?'),
+                                  chat_id=chat_id,
+                                  message_id=message_id,
+                                  reply_markup=create_kb_plus(int(res)))
 
 
 

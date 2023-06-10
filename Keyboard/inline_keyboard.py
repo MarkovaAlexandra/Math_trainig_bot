@@ -5,7 +5,7 @@ from .callback import callback
 def create_kb_plus(enter: int):
     normalnaya('main_plus_10')
     keyboard = normalnaya('main_plus_10')
-    btn_del = InKB(text='отмена', callback_data=callback.new(menu='main', btn='del'))
+    btn_del = InKB(text='отмена', callback_data=callback.new(menu='main_plus_10', btn='del'))
     btn_enter_plus = InKB(text='подтвердить', callback_data=callback.new(menu='answer_plus', btn=f'{enter}'))
     btn_back = InKB(text='к темам', callback_data=callback.new(menu='', btn='main'))
     keyboard.row(btn_del, btn_enter_plus, btn_back)
@@ -13,8 +13,8 @@ def create_kb_plus(enter: int):
 
 
 def create_kb_plus100(enter: int):
-    normalnaya()
-    keyboard = normalnaya()
+
+    keyboard = normalnaya('main_plus_100')
     btn_del = InKB(text='отмена',callback_data=callback.new(menu='main_plus100', btn='del'))
     btn_enter_plus = InKB(text='подтвердить', callback_data=callback.new(menu='answer_plus100',btn=f'{enter}'))
     btn_back = InKB(text='к темам', callback_data=callback.new(menu='', btn='main'))
@@ -23,8 +23,8 @@ def create_kb_plus100(enter: int):
 
 
 def create_kb_mult(enter: int):
-    normalnaya()
-    keyboard = normalnaya()
+
+    keyboard = normalnaya('main_mult_10')
     btn_del = InKB(text='отмена',callback_data=callback.new(menu='main', btn='del'))
     btn_enter_mult = InKB(text='подтвердить', callback_data=callback.new(menu='answer_mult',btn=f'{enter}'))
     btn_back = InKB(text='к темам', callback_data=callback.new(menu='', btn='main'))
@@ -32,8 +32,8 @@ def create_kb_mult(enter: int):
     return keyboard
 
 def create_kb_mult100(enter: int):
-    normalnaya()
-    keyboard = normalnaya()
+
+    keyboard = normalnaya('main_mult_100')
     btn_del = InKB(text='отмена',callback_data=callback.new(menu='main_mult100', btn='del'))
     btn_enter_mult = InKB(text='подтвердить', callback_data=callback.new(menu='answer_mult100',btn=f'{enter}'))
     btn_back = InKB(text='к темам', callback_data=callback.new(menu='', btn='main'))
@@ -41,8 +41,8 @@ def create_kb_mult100(enter: int):
     return keyboard
 
 def create_kb_dif10(enter: int):
-    normalnaya()
-    keyboard = normalnaya()
+
+    keyboard = normalnaya('main_dif_10')
     btn_del = InKB(text='отмена',callback_data=callback.new(menu='main_dif10', btn='del'))
     btn_enter_mult = InKB(text='подтвердить', callback_data=callback.new(menu='answer_dif10',btn=f'{enter}'))
     btn_back = InKB(text='к темам', callback_data=callback.new(menu='', btn='main'))
@@ -51,26 +51,27 @@ def create_kb_dif10(enter: int):
 
 
 def create_kb_div10(enter: int):
-    normalnaya()
-    keyboard = normalnaya()
+
+    keyboard = normalnaya('main_div10')
     btn_del = InKB(text='отмена',callback_data=callback.new(menu='main_div10', btn='del'))
     btn_enter_mult = InKB(text='подтвердить', callback_data=callback.new(menu='answer_div10',btn=f'{enter}'))
     btn_back = InKB(text='к темам', callback_data=callback.new(menu='', btn='main'))
     keyboard.row(btn_del, btn_enter_mult, btn_back)
     return keyboard
-def create_kb_dif100(enter: int):
-    normalnaya()
-    keyboard = normalnaya()
-    btn_del = InKB(text='отмена',callback_data=callback.new(menu='main_dif100', btn='del'))
+
+
+def create_kb_dif_100(enter: int):
+
+    keyboard = normalnaya('main_dif_100')
+    btn_del = InKB(text='отмена',callback_data=callback.new(menu='main_dif_100', btn='del'))
     btn_enter_mult = InKB(text='подтвердить', callback_data=callback.new(menu='answer_dif100',btn=f'{enter}'))
     btn_back = InKB(text='к темам', callback_data=callback.new(menu='', btn='main'))
-    keyboard.row(btn_del, btn_enter_mult,btn_back)
+    keyboard.row(btn_del, btn_enter_mult, btn_back)
     return keyboard
 
-
 def create_kb_div100(enter: int):
-    normalnaya()
-    keyboard = normalnaya()
+
+    keyboard = normalnaya('main_div100')
     btn_del = InKB(text='отмена',callback_data=callback.new(menu='main_div100', btn='del'))
     btn_enter_mult = InKB(text='подтвердить', callback_data=callback.new(menu='answer_div100',btn=f'{enter}'))
     btn_back = InKB(text='к темам', callback_data=callback.new(menu='', btn='main'))

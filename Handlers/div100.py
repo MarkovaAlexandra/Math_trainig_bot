@@ -25,25 +25,25 @@ async def multipl(message: Message | CallbackQuery):
                                  chat_id=chat_id,
                                  message_id=message_id, reply_markup=create_kb_div100(settings.ENTER))
 
-# @dp.callback_query_handler(callback.filter(menu='main_div100'))
-# async def enter(call: CallbackQuery):
-#     user = call.from_user.id
-#     chat_id = call.message.chat.id
-#     message_id = call.message.message_id
-#     res = str(check_user_answer(user)[0])                    # из бд берем текущий результат
-#     _, _, num = call.data.split(':')
-#     if num.isdigit():
-#         res += num                                           # и конкатинируем
-#     else:
-#         if len(res)==1:
-#             res = 0
-#         else:
-#             res = res[:-1]
-#     update_user_answer(res,user)                             # сохраняем в бд
-#     await bot.edit_message_media(media=InputMediaPhoto(media=settings.PICTURE, caption=f'твой ответ {int(res)}?'),
-#                                  chat_id=chat_id,
-#                                  message_id=message_id, reply_markup=create_kb_div100(int(res)))
-#
+@dp.callback_query_handler(callback.filter(menu='main_div100'))
+async def enter(call: CallbackQuery):
+     user = call.from_user.id
+     chat_id = call.message.chat.id
+     message_id = call.message.message_id
+     res = str(check_user_answer(user)[0])                    # из бд берем текущий результат
+     _, _, num = call.data.split(':')
+     if num.isdigit():
+         res += num                                           # и конкатинируем
+     else:
+         if len(res)==1:
+             res = 0
+         else:
+             res = res[:-1]
+     update_user_answer(res,user)                             # сохраняем в бд
+     await bot.edit_message_media(media=InputMediaPhoto(media=settings.PICTURE, caption=f'твой ответ {int(res)}?'),
+                                  chat_id=chat_id,
+                                  message_id=message_id, reply_markup=create_kb_div100(int(res)))
+
 
 
 
