@@ -1,8 +1,6 @@
-from aiogram.types import Message
+
+
 from loader import dp, bot
-from aiogram.dispatcher import filters
-import random
-import time
 from Keyboard import  create_nex_plus_pos,create_nex_mult_pos, create_nex_plus_pos_100, \
     create_nex_mult_pos100, create_nex_dif10, create_nex_dif100, create_nex_div10, create_nex_div100
 from aiogram.types import Message, CallbackQuery, InputMediaPhoto
@@ -68,21 +66,15 @@ async def proverka(call: CallbackQuery):
     if results[0]==results[1]:
         update_statistics(user,column_rights)
 
-        # await bot.edit_message_text(chat_id=chat_id, message_id=message_id, text='Молодец',
-        #                             reply_markup=return_keybord())
         await bot.edit_message_media(media=InputMediaPhoto(media=settings.PICTURE_RIGHT, caption='Молодец'),
                                      chat_id=chat_id,
                                      message_id=message_id, reply_markup=return_keybord())
 
     else:
         update_statistics(user,column_mistakes)
-        # await bot.edit_message_text(chat_id=chat_id, message_id=message_id,
-        #                                     text=f'ничего подобного, верный ответ {results[1]}',
-        #                                     reply_markup=return_keybord())
+
         await bot.edit_message_media(media=InputMediaPhoto(media=settings.PICTURE_WRONG,
                                     caption=f'ничего подобного, верный ответ {results[1]}'),
                                      chat_id=chat_id,
                                      message_id=message_id, reply_markup=return_keybord())
-
-#    settings.ENTER = ''
     refresh_user_answer(user)

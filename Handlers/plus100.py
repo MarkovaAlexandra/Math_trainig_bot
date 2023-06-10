@@ -1,8 +1,7 @@
-from aiogram.types import Message
+
+
 from loader import dp, bot
-from aiogram.dispatcher import filters
 import random
-import time
 from Keyboard import create_kb_plus100
 from aiogram.types import Message, CallbackQuery, InputMediaPhoto
 import settings
@@ -21,8 +20,6 @@ async def plus(message: Message | CallbackQuery):
     b = random.randint(1, 1000)
     result = a + b
     update_bot_answer(result, user)                                 # вношу в бд правильный ответ
-    # await bot.edit_message_text(chat_id=chat_id, message_id=message_id,
-    #                               text=f'{a} + {b} = ?',reply_markup=create_kb_plus(settings.ENTER))
     await bot.edit_message_media(media=InputMediaPhoto(media=settings.PICTURE, caption=f'{a} + {b} = ?'), chat_id=chat_id,
                                  message_id=message_id, reply_markup=create_kb_plus100(settings.ENTER))
 
@@ -41,8 +38,6 @@ async def enter(call: CallbackQuery):
         else:
             res = res[:-1]                                          # от текущего значение отрезали последнюю цифру
     update_user_answer(int(res), user)                              # и обновили его в бд
-    # await bot.edit_message_text(chat_id=chat_id, message_id=message_id, text=f'твой ответ {int(res)}?',
-    #                                     reply_markup=create_kb_plus(int(res)))
     await bot.edit_message_media(media=InputMediaPhoto(media=settings.PICTURE, caption=f'твой ответ {int(res)}?'),
                                  chat_id=chat_id,
                                  message_id=message_id, reply_markup=create_kb_plus100(int(res)))
