@@ -6,7 +6,8 @@ from Keyboard import create_kb_plus
 from aiogram.types import Message, CallbackQuery, InputMediaPhoto
 import settings
 from Keyboard.callback import callback
-from DataBase import update_bot_answer, update_user_answer,check_user_answer
+from DataBase import update_user_answer,update_bot_answer,check_user_answer
+
 
 
 @dp.callback_query_handler(callback.filter(btn='next_plus'))
@@ -24,7 +25,7 @@ async def plus(message: Message | CallbackQuery):
                                  message_id=message_id, reply_markup=(create_kb_plus(settings.ENTER)))
 
 @dp.callback_query_handler(callback.filter(menu='main_plus_10'))
-async def enter(call: CallbackQuery):
+async def enter_(call: CallbackQuery):
      user = call.from_user.id
      chat_id = call.message.chat.id
      message_id = call.message.message_id

@@ -29,7 +29,8 @@ async def enter(call: CallbackQuery):
      user = call.from_user.id
      chat_id = call.message.chat.id
      message_id = call.message.message_id
-     res = str(check_user_answer(user)[0])                    # из бд берем текущий результат
+     res = str(check_user_answer(user)[0])         # из бд берем текущий результат
+     print(call.data)
      _, _, num = call.data.split(':')
      if num.isdigit():
          res += num                                           # и конкатинируем
